@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IIFE</title>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body *mizu *set="{ tValue: 0}">
+    <div class="graph-section" id="canvas-container">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="details-section">
+      <div class="formula-section">
+        <h3>Formulas</h3>
+        <p>
+          \[ D_1 = \{z: \lvert z \rvert \leq 1, \Im{z} \geq 0 \} \] \[ D_2 =
+          \{w: \Im{w} \leq -\Re{w} - 1 \} \] \[w = -\frac{1}{2} * (z +
+          \frac{1}{z})*e^{\frac{3\pi}{4i}} - \frac{1+i}{\sqrt{2}}\]
+        </p>
+      </div>
+
+      <div class="t-slider">
+        <div class="t-text">
+          <span class="t-label">Choose t</span>
+          <span class="t-value" id="t-percentage" *mustache *refresh="1">
+            {{tValue}}%
+          </span>
+        </div>
+        <input
+          type="range"
+          id="t-input"
+          min="0"
+          max="100"
+          *eval="draw(tValue)"
+          ::.number="tValue"
+          :style="{background: 'linear-gradient(to right, #1d1e23 ' +  tValue + '%, #1b1b1f ' +  tValue + '%)'}"
+        />
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <script src="graph.js" defer></script>
+    <script src="https://mizu.sh/client.js" defer></script>
+  </body>
+</html>
